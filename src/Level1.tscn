@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://src/tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://src/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/platformerGraphicsDeluxe_Updated/bg.png" type="Texture" id=3]
+[ext_resource path="res://src/LevelHandler.gd" type="Script" id=4]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 575.764, 524.235, 0, 0, 0, 0, 816.307, 514.435, 0, 0, 0, 0, 571.31, 276.565 )
+}
+
+[sub_resource type="Curve2D" id=2]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 343.001, 521.449, 0, 0, 0, 0, 529.888, 521.449, 0, 0, 0, 0, 343.001, 521.449 )
+}
+
+[sub_resource type="Curve2D" id=3]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 627.107, 522.393, 0, 0, 0, 0, 627.107, 522.393, 0, 0, 0, 0, 775.679, 523.64, 0, 0, 0, 0, 626.844, 521.972 )
+}
+
+[sub_resource type="Curve2D" id=4]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 491.692, 280.511, 0, 0, 0, 0, 650.272, 281.402, 0, 0, 0, 0, 490.801, 281.402 )
+}
+
+[node name="Node2D" type="Node"]
+script = ExtResource( 4 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 3 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TileMap" type="TileMap" parent="."]
+scale = Vector2( 0.86, 0.86 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 70, 70 )
+format = 1
+tile_data = PoolIntArray( 327679, 0, 0, 262161, 0, 0, 393215, 0, 0, 327688, 4, 0, 327689, 2, 0, 327690, 5, 0, 327697, 0, 0, 458751, 0, 0, 393233, 0, 0, 524287, 0, 0, 458757, 2, 0, 458758, 2, 0, 458769, 0, 0, 589823, 0, 0, 524305, 0, 0, 655359, 0, 0, 589824, 1, 0, 589825, 2, 0, 589826, 2, 0, 589827, 2, 0, 589828, 2, 0, 589829, 2, 0, 589830, 2, 0, 589831, 2, 0, 589832, 2, 0, 589833, 2, 0, 589834, 2, 0, 589835, 2, 0, 589836, 2, 0, 589837, 2, 0, 589838, 2, 0, 589839, 2, 0, 589840, 3, 0, 589841, 0, 0 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 217.484, 514.657 )
+
+[node name="CoinSpawns" type="Path2D" parent="."]
+curve = SubResource( 1 )
+
+[node name="Spider" type="Path2D" parent="."]
+curve = SubResource( 2 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Spider"]
+position = Vector2( 343.001, 521.449 )
+
+[node name="Spider1" type="Path2D" parent="."]
+curve = SubResource( 3 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Spider1"]
+position = Vector2( 627.107, 522.393 )
+rotation = 0.00837048
+
+[node name="Spider2" type="Path2D" parent="."]
+curve = SubResource( 4 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Spider2"]
+position = Vector2( 491.692, 280.511 )
+rotation = 0.00561411

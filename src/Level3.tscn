@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/LevelHandler.gd" type="Script" id=1]
+[ext_resource path="res://src/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/tileset.tres" type="TileSet" id=3]
+[ext_resource path="res://src/Key.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Lock.tscn" type="PackedScene" id=5]
+
+[sub_resource type="Curve2D" id=2]
+_data = {
+"points": PoolVector2Array(  )
+}
+
+[sub_resource type="Curve2D" id=3]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 328.981, 423.772, 0, 0, 0, 0, 329.83, 467.604, 0, 0, 0, 0, 403.924, 469.492, 0, 0, 0, 0, 478.962, 386.431, 0, 0, 0, 0, 478.962, 468.548, 0, 0, 0, 0, 329.83, 466.661 )
+}
+
+[node name="Node" type="Node"]
+script = ExtResource( 1 )
+
+[node name="TileMap" type="TileMap" parent="."]
+scale = Vector2( 0.86, 0.86 )
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 70, 70 )
+format = 1
+tile_data = PoolIntArray( 393221, 2, 0, 458763, 6, 0, 458764, 6, 0, 458765, 6, 0, 524301, 6, 0, 589824, 1, 0, 589825, 2, 0, 589826, 2, 0, 589827, 2, 0, 589828, 2, 0, 589829, 2, 0, 589830, 2, 0, 589831, 2, 0, 589832, 2, 0, 589833, 2, 0, 589834, 2, 0, 589835, 2, 0, 589836, 2, 0, 589837, 2, 0, 589838, 2, 0, 589839, 2, 0, 589840, 3, 0 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 109.489, 517.243 )
+scale = Vector2( 0.86, 0.86 )
+
+[node name="CoinSpawns" type="Path2D" parent="."]
+curve = SubResource( 2 )
+
+[node name="Bat" type="Path2D" parent="."]
+curve = SubResource( 3 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Bat"]
+position = Vector2( 328.981, 423.772 )
+rotation = 1.55144
+
+[node name="Lock" parent="." instance=ExtResource( 5 )]
+position = Vector2( 691.701, 511.676 )
+
+[node name="Key" parent="." instance=ExtResource( 4 )]
+position = Vector2( 912.28, 517.243 )
+[connection signal="got_key" from="Key" to="Lock" method="_on_got_key"]

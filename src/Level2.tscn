@@ -1,0 +1,74 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://src/tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://src/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Spring.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/LevelHandler.gd" type="Script" id=4]
+[ext_resource path="res://src/Spike.tscn" type="PackedScene" id=5]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 401.235, 522.24, 0, 0, 0, 0, 603.902, 515.888, 0, 0, 0, 0, 639.861, 393.027, 0, 0, 0, 0, 506.674, 278.624, 0, 0, 0, 0, 629.572, 159.964, 0, 0, 0, 0, 791.528, 521.368 )
+}
+
+[sub_resource type="Curve2D" id=2]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 481, 522, 0, 0, 0, 0, 603.281, 522.269, 0, 0, 0, 0, 481.115, 522.04 )
+}
+
+[sub_resource type="Curve2D" id=3]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 686.469, 521, 0, 0, 0, 0, 910.249, 524.802, 0, 0, 0, 0, 686.469, 520.603 )
+}
+
+[sub_resource type="Curve2D" id=4]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 912.233, 524.009, 0, 0, 0, 0, 700.712, 520.834, 0, 0, 0, 0, 911.836, 524.802 )
+}
+
+[node name="Node2D" type="Node"]
+script = ExtResource( 4 )
+current_level = 2
+
+[node name="TileMap" type="TileMap" parent="."]
+scale = Vector2( 0.86, 0.86 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 70, 70 )
+format = 1
+tile_data = PoolIntArray( 196618, 7, 0, 327679, 3, 0, 393215, 3, 0, 327684, 6, 0, 327688, 7, 0, 327697, 2, 0, 458751, 3, 0, 393220, 6, 0, 393233, 2, 0, 524287, 3, 0, 458756, 6, 0, 458761, 2, 0, 458762, 2, 0, 458769, 2, 0, 589823, 3, 0, 524292, 6, 0, 524305, 2, 0, 655359, 3, 0, 589824, 1, 0, 589825, 2, 0, 589826, 2, 0, 589827, 2, 0, 589828, 2, 0, 589829, 2, 0, 589830, 2, 0, 589831, 2, 0, 589832, 2, 0, 589833, 2, 0, 589834, 2, 0, 589835, 2, 0, 589836, 2, 0, 589837, 2, 0, 589838, 2, 0, 589839, 2, 0, 589840, 3, 0, 589841, 2, 0 )
+
+[node name="Spring" parent="." instance=ExtResource( 3 )]
+position = Vector2( 140.786, 517.107 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 44.2204, 511.84 )
+
+[node name="CoinSpawns" type="Path2D" parent="."]
+curve = SubResource( 1 )
+
+[node name="Spike" parent="." instance=ExtResource( 5 )]
+position = Vector2( 336.587, 507.424 )
+
+[node name="Spike2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 204.95, 507.09 )
+
+[node name="Spider" type="Path2D" parent="."]
+curve = SubResource( 2 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Spider"]
+position = Vector2( 481, 522 )
+rotation = 0.00219585
+
+[node name="Spider2" type="Path2D" parent="."]
+curve = SubResource( 3 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Spider2"]
+position = Vector2( 686.469, 521 )
+rotation = 0.016976
+
+[node name="Spider3" type="Path2D" parent="."]
+curve = SubResource( 4 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Spider3"]
+position = Vector2( 912.233, 524.009 )
+rotation = -3.12657

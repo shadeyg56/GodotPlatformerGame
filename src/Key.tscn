@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/platformerGraphicsDeluxe_Updated/Items/keyYellow.png" type="Texture" id=1]
+[ext_resource path="res://src/Key.gd" type="Script" id=2]
+
+[node name="Key" type="Area2D"]
+scale = Vector2( 0.8, 0.8 )
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -18.867, -20.7771, -24.2967, -18.3933, -27.74, -12.8311, -29.9913, -6.20948, -30.1238, 1.73649, -26.7379, 9.70752, -21.8379, 14.3427, -12.5676, 15.5346, -6.74052, 11.4292, -3.23991, 6.10678, -2.18044, 1.3392, 7.75202, 1.60406, 8.54662, 12.8609, 8.94392, 14.3176, 14.2412, 15.2446, 14.3737, 12.0663, 19.4061, 12.0663, 20.0683, 14.8473, 25.2332, 14.7149, 26.6899, 13.1257, 26.3677, 2.15885, 29.9434, 0.0399246, 30.2656, -4.35542, 27.7494, -7.79867, -1.78314, -8.46084, -5.35883, -16.2744, -9.06696, -19.4528, -13.5697, -20.9095 )
+[connection signal="body_entered" from="." to="." method="_on_Key_body_entered"]
