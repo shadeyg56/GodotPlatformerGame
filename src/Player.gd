@@ -7,6 +7,7 @@ export var jump_speed = -1000
 onready var sprite = $AnimatedSprite
 onready var camera = $Camera2D
 var has_key = false
+onready var screen_size = get_viewport_rect()
 
 func input():
 	velocity.x = 0
@@ -24,6 +25,9 @@ func input():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	sprite.play()
+	camera.limit_bottom = screen_size.end.y
+	camera.limit_top = screen_size.position.y
+	camera.limit_left = screen_size.position.x
 
 
 func _physics_process(delta):
@@ -39,6 +43,8 @@ func _physics_process(delta):
 		#.frame = 0
 	velocity.y += gravity * delta
 	velocity = move_and_slide(velocity, Vector2(0, -1))
+	#camera.position.x = clamp(camera.position.x, 0, screen_size.x)
+	
 
 
 func _on_VisibilityNotifier2D_viewport_exited(viewport):
