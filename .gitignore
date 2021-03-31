@@ -1,4 +1,10 @@
-assets/
+# Temporary
+/assets
+
+# Plugins
+/bin
+*.gdnlib
+*.gdns
 
 # Godot-specific ignores
 .import/
