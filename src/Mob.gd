@@ -12,6 +12,7 @@ var move = true
 var spawn
 export var state = "moving"
 var curve
+var stinger
 
 
 func _ready():
@@ -23,6 +24,8 @@ func _ready():
 		if state == "moving":
 			$HangTimer.start()
 			state = "hanging"
+	if "Bee" in name:
+		stinger = load("res://src/Stinger.tscn")
 	
 func _process(delta):
 	if not dead:
@@ -63,18 +66,25 @@ func _on_HangTimer_timeout():
 	sprite.play()
 	tween.interpolate_property(self, "position", position, path.get_parent().curve.get_point_position(0), 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	tween.start()
-	collision.set_deferred("disabled", false)
 
 
 func _on_Detection_body_entered(body):
 	if body.name == "Player":
-		sprite.animation = "default"
-		sprite.play()
-		state = "return to path"
-		pathidx = 0
+		if "Bat" in name:
+			sprite.animation = "default"
+			sprite.play()
+			state = "return to path"
+			pathidx = 0
+			tween.stop_all()
+		elif "Bee" in name:
+			var new_stinger = stinger.instance()
+			new_stinger.global_position = $StingerSpawn.global_position
+			get_parent().add_child(new_stinger)
+			$StingTimer.start()
 
 
 func _on_Tween_tween_completed(object, key):
+	print("here")
 	if position == path.get_parent().curve.get_point_position(0):
 		state = "moving"
 	elif position == spawn.position:
@@ -84,4 +94,15 @@ func _on_Tween_tween_completed(object, key):
 
 func _on_Detection_body_exited(body):
 	if body.name == "Player":
-		state = "return to hang"
+		if "Bat" in name:
+			tween.stop_all()
+			state = "return to hang"
+		elif "Bee" in name:
+			$StingTimer.stop()
+
+
+func _on_StingTimer_timeout():
+	var new_stinger = stinger.instance()
+	new_stinger.global_position = $StingerSpawn.global_position
+	get_parent().add_child(new_stinger)
+	
