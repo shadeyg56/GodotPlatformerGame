@@ -1,6 +1,6 @@
 extends Node
 
-onready var Coin = preload("res://coin.tscn")
+onready var Coin = preload("res://src/coin.tscn")
 onready var Spider = preload("res://src/Spider.tscn")
 onready var Bat = preload("res://src/Bat.tscn")
 var total_coins = {1: 3, 2:5}
@@ -11,7 +11,6 @@ var mob
 func _ready():
 	spawn_coins()
 	spawn_enemies()
-	print(current_level)
 
 func spawn_coins():
 	var points = $CoinSpawns.curve.get_point_count()
@@ -34,15 +33,19 @@ func spawn_enemies():
 	for path in paths:
 		if "Spider" in path.name:
 			mob = Spider.instance()
+			mob.path = path.get_node("PathFollow2D")
 		elif "Bat" in path.name:
 			mob = Bat.instance()
+			mob.get_node("Bat").path = path.get_node("PathFollow2D")
 		else:
 			mob = null
 		if mob != null:
+			
 			add_child(mob)
-			mob.path = path.get_node("PathFollow2D")
+			
 
 func on_coin_grabbed():
 	coins_grabbed += 1
 	if coins_grabbed == total_coins[current_level]:
 		globals.load_next_level()
+

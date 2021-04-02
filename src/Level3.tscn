@@ -6,14 +6,15 @@
 [ext_resource path="res://src/Key.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Lock.tscn" type="PackedScene" id=5]
 
-[sub_resource type="Curve2D" id=2]
+[sub_resource type="Curve2D" id=1]
 _data = {
 "points": PoolVector2Array(  )
 }
 
-[sub_resource type="Curve2D" id=3]
+[sub_resource type="Curve2D" id=2]
+resource_local_to_scene = true
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 328.981, 423.772, 0, 0, 0, 0, 329.83, 467.604, 0, 0, 0, 0, 403.924, 469.492, 0, 0, 0, 0, 478.962, 386.431, 0, 0, 0, 0, 478.962, 468.548, 0, 0, 0, 0, 329.83, 466.661 )
+"points": PoolVector2Array( -84.0896, 8.40896, 84.0896, -8.40896, 406.193, 467.987, 29.4314, 36.9994, -29.4314, -36.9994, 421.065, 331.674, 20, -14, -20, 14, 227.082, 330.08, -28.5905, -67.6922, 28.5905, 67.6922, 227.082, 465.885, 0, 0, 0, 0, 406.193, 467.987 )
 }
 
 [node name="Node" type="Node"]
@@ -28,17 +29,20 @@ tile_data = PoolIntArray( 393221, 2, 0, 458763, 6, 0, 458764, 6, 0, 458765, 6, 0
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 109.489, 517.243 )
-scale = Vector2( 0.86, 0.86 )
 
 [node name="CoinSpawns" type="Path2D" parent="."]
-curve = SubResource( 2 )
+curve = SubResource( 1 )
 
 [node name="Bat" type="Path2D" parent="."]
-curve = SubResource( 3 )
+curve = SubResource( 2 )
+
+[node name="Position2D" type="Position2D" parent="Bat"]
+position = Vector2( 328.41, 424.334 )
+rotation = 7.45058e-09
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Bat"]
-position = Vector2( 328.981, 423.772 )
-rotation = 1.55144
+position = Vector2( 406.193, 467.987 )
+rotation = -0.118524
 
 [node name="Lock" parent="." instance=ExtResource( 5 )]
 position = Vector2( 691.701, 511.676 )
