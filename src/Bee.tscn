@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/Enemies/bee_fly.png" type="Texture" id=1]
+[ext_resource path="res://assets/Enemies/bee.png" type="Texture" id=2]
+[ext_resource path="res://src/Mob.gd" type="Script" id=3]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 207.346
+
+[node name="Bee" type="Area2D"]
+script = ExtResource( 3 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+playing = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -16.7335, -23.874, -28.4405, -17.1276, -21.6941, -8.59528, -24.8689, -0.658272, -24.0167, 13.8035, -19.5268, 16.2589, -8.00274, 13.8268, -3.83582, 11.8425, -0.462585, 19.7795, 7.07757, 23.9464, 14.4193, 22.7559, 18.7847, 16.0094, 18.3878, 7.67559, 13.0303, -2.24567, 27.3169, -6.80945, 26.1264, -15.1433, 16.8004, -24.8661, 0.926392, -8.59528, -7.60589, -11.5717, -14.7492, -23.0803 )
+
+[node name="StingTimer" type="Timer" parent="."]
+wait_time = 2.5
+
+[node name="StingerSpawn" type="Position2D" parent="."]
+position = Vector2( 8.76275, 24 )
+
+[node name="Detection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection"]
+shape = SubResource( 2 )
+[connection signal="body_entered" from="." to="." method="_on_Mob_body_entered"]
+[connection signal="timeout" from="StingTimer" to="." method="_on_StingTimer_timeout"]
+[connection signal="body_entered" from="Detection" to="." method="_on_Detection_body_entered"]
