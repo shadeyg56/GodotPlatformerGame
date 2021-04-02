@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/LevelHandler.gd" type="Script" id=1]
 [ext_resource path="res://src/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/tileset.tres" type="TileSet" id=3]
 [ext_resource path="res://src/Key.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Lock.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Slime.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -49,4 +50,7 @@ position = Vector2( 691.701, 511.676 )
 
 [node name="Key" parent="." instance=ExtResource( 4 )]
 position = Vector2( 912.28, 517.243 )
+
+[node name="Slime" parent="." instance=ExtResource( 6 )]
+position = Vector2( 297.844, 517.314 )
 [connection signal="got_key" from="Key" to="Lock" method="_on_got_key"]

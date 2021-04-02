@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/Enemies/slime_walk.png" type="Texture" id=1]
+[ext_resource path="res://assets/Enemies/slime.png" type="Texture" id=2]
+[ext_resource path="res://assets/Enemies/slime_squashed.png" type="Texture" id=3]
+[ext_resource path="res://src/Slime.gd" type="Script" id=4]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 2 ) ],
+"loop": false,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 350.85, 212.715 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Slime" type="KinematicBody2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Slime"]
+frames = SubResource( 1 )
+speed_scale = 0.5
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slime"]
+polygon = PoolVector2Array( -5.89091, -17.0023, -14.7639, -11.9698, -21.3856, -3.75901, -23.6369, 2.46534, -23.6369, 8.95455, -21.9153, 14.1194, -17.6774, 17.1654, 20.1984, 16.6357, 24.7011, 11.2059, 24.4362, 0.478844, 16.6227, -11.5725, 6.95508, -17.0023 )
+
+[node name="MoveTimer" type="Timer" parent="Slime"]
+wait_time = 2.0
+
+[node name="Detection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection"]
+position = Vector2( -0.5, 0 )
+shape = SubResource( 2 )
+[connection signal="timeout" from="Slime/MoveTimer" to="Slime" method="_on_MoveTimer_timeout"]
+[connection signal="body_entered" from="Detection" to="Slime" method="_on_Detection_body_entered"]
+[connection signal="body_exited" from="Detection" to="Slime" method="_on_Detection_body_exited"]

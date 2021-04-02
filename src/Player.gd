@@ -6,6 +6,7 @@ export var gravity = 3000
 export var jump_speed = -1000
 onready var sprite = $AnimatedSprite
 onready var camera = $Camera2D
+var collision
 var has_key = false
 onready var screen_size = get_viewport_rect()
 
@@ -43,7 +44,14 @@ func _physics_process(delta):
 		#.frame = 0
 	velocity.y += gravity * delta
 	velocity = move_and_slide(velocity, Vector2(0, -1))
+	check_collision()
 	#camera.position.x = clamp(camera.position.x, 0, screen_size.x)
+	
+func check_collision():
+	for i in get_slide_count():
+		collision = get_slide_collision(i)
+		if collision.collider.name == "Slime":
+			get_tree().reload_current_scene()
 	
 
 
