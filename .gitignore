@@ -1,12 +1,10 @@
-# Temporary
-/assets
-
 # Plugins
 /bin
 *.gdnlib
 *.gdns
 
 # Godot-specific ignores
+*.import
 .import/
 export.cfg
 export_presets.cfg

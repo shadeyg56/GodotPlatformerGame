@@ -2,7 +2,7 @@ extends Area2D
 
 onready var sprite = $Sprite
 onready var spring_up = sprite.texture
-var spring_down = preload("res://assets/platformerGraphicsDeluxe_Updated/Items/springboardDown.png")
+var spring_down = preload("res://assets/Items/springboardDown.png")
 onready var globals = $"/root/globals"
 
 func _ready():

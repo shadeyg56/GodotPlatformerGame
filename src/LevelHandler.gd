@@ -3,7 +3,7 @@ extends Node
 onready var Coin = preload("res://src/coin.tscn")
 onready var Spider = preload("res://src/Spider.tscn")
 onready var Bat = preload("res://src/Bat.tscn")
-var total_coins = {1: 3, 2:5}
+var total_coins = {1: 3, 2:6}
 var coins_grabbed = 0
 export var current_level = globals.current_level
 var mob
