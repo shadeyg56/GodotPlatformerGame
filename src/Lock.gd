@@ -13,7 +13,6 @@ func _ready():
 func _on_got_key():
 	area.set_deferred("disabled", false)
 	collision.set_deferred("disabled", true)
-	print("here")
 
 
 func _on_Area2D_body_entered(body):

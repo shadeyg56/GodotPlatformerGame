@@ -98,10 +98,12 @@ script = ExtResource( 2 )
 scale = Vector2( 3, 3 )
 frames = SubResource( 15 )
 animation = "idle"
-frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( -16.0786, -22.559, 17.7756, -23.0044, 19.7801, -23.0044, 20.2256, -1.17744, 7.53024, -1.40016, 10.4257, 1.49526, 10.2029, 19.7587, 6.19389, 25.1041, 2.85303, 25.5495, 1.96213, 18.8678, -2.26964, 19.0905, -6.72414, 25.3268, -10.7332, 25.3268, -11.1786, 15.5269, -16.9695, 13.7451, -16.7467, 8.177, -10.7332, 7.50883, -11.4014, 1.04981, -18.974, -1.40016, -19.1967, -9.64097, -23.2057, -9.86369, -23.4285, -15.4318 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+[connection signal="viewport_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_viewport_exited"]

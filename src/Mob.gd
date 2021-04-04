@@ -84,7 +84,6 @@ func _on_Detection_body_entered(body):
 
 
 func _on_Tween_tween_completed(object, key):
-	print("here")
 	if position == path.get_parent().curve.get_point_position(0):
 		state = "moving"
 	elif position == spawn.position:

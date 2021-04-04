@@ -23,9 +23,10 @@ func _physics_process(delta):
 	if move:
 		
 		#velocity = Player.position - position
-		velocity = global_position.direction_to(Player.global_position) * 100
-		velocity.y = jump_speed
-		move = false
+		if is_on_floor():
+			velocity = global_position.direction_to(Player.global_position) * 100
+			velocity.y = jump_speed
+			move = false
 	velocity.y += gravity * delta
 	move_and_slide(velocity, Vector2(0, -1))
 	check_player_collision()
@@ -43,16 +44,19 @@ func check_player_collision():
 
 func _on_Detection_body_entered(body):
 	if body.name == "Player":
+		$MoveTimer.wait_time = 1
 		$MoveTimer.start()
 
 
 func _on_MoveTimer_timeout():
+	$MoveTimer.wait_time = 3
 	move = true
 
 
 func _on_Detection_body_exited(body):
 	if body.name == "Player":
 		$MoveTimer.stop()
+		
 
 
 func _on_AnimatedSprite_animation_finished():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://src/LevelHandler.gd" type="Script" id=1]
 [ext_resource path="res://src/Player.tscn" type="PackedScene" id=2]
@@ -6,27 +6,64 @@
 [ext_resource path="res://src/Key.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Lock.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/Slime.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/HUD.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Spring.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/bg.png" type="Texture" id=9]
+[ext_resource path="res://src/Lava.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/Bridge.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/Ladder.tscn" type="PackedScene" id=12]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array(  )
+"points": PoolVector2Array( 0, 0, 0, 0, 353.456, 523.099, 0, 0, 0, 0, 749.815, 511.262, 0, 0, 0, 0, 1996.98, 415.408 )
 }
 
 [sub_resource type="Curve2D" id=2]
-resource_local_to_scene = true
 _data = {
-"points": PoolVector2Array( -84.0896, 8.40896, 84.0896, -8.40896, 406.193, 467.987, 29.4314, 36.9994, -29.4314, -36.9994, 421.065, 331.674, 20, -14, -20, 14, 227.082, 330.08, -28.5905, -67.6922, 28.5905, 67.6922, 227.082, 465.885, 0, 0, 0, 0, 406.193, 467.987 )
+"points": PoolVector2Array( 0, 0, 0, 0, 216.137, 522.955, 0, 0, 0, 0, 500.496, 521.868, 0, 0, 0, 0, 215.665, 522.955 )
+}
+
+[sub_resource type="Curve2D" id=3]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 502.856, 521.396, 0, 0, 0, 0, 216.182, 522.399, 0, 0, 0, 0, 502.856, 521.868 )
+}
+
+[sub_resource type="Curve2D" id=4]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 657.713, 363.769, 0, 0, 0, 0, 844.591, 363.769, 0, 0, 0, 0, 657.713, 364.436 )
+}
+
+[sub_resource type="Curve2D" id=5]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 1715.99, 175.5, 0, 0, 0, 0, 1962.04, 174.707, 0, 0, 0, 0, 1715.99, 175.5 )
 }
 
 [node name="Node" type="Node"]
 script = ExtResource( 1 )
+current_level = 3
+use_cam = true
+
+[node name="BG" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -24.0
+margin_top = -1.0
+margin_right = 1621.0
+margin_bottom = -3.0
+texture = ExtResource( 9 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HUD" parent="." instance=ExtResource( 7 )]
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2( 0.86, 0.86 )
 tile_set = ExtResource( 3 )
 cell_size = Vector2( 70, 70 )
 format = 1
-tile_data = PoolIntArray( 393221, 2, 0, 458763, 6, 0, 458764, 6, 0, 458765, 6, 0, 524301, 6, 0, 589824, 1, 0, 589825, 2, 0, 589826, 2, 0, 589827, 2, 0, 589828, 2, 0, 589829, 2, 0, 589830, 2, 0, 589831, 2, 0, 589832, 2, 0, 589833, 2, 0, 589834, 2, 0, 589835, 2, 0, 589836, 2, 0, 589837, 2, 0, 589838, 2, 0, 589839, 2, 0, 589840, 3, 0 )
+tile_data = PoolIntArray( 327679, 0, 0, 393215, 0, 0, 458751, 0, 0, 393235, 7, 0, 393236, 7, 0, 524287, 0, 0, 458763, 6, 0, 458764, 6, 0, 458765, 6, 0, 458779, 9, 0, 458785, 12, 0, 589823, 0, 0, 524301, 6, 0, 524314, 9, 0, 524315, 10, 0, 524321, 11, 0, 524322, 12, 0, 655359, 0, 0, 589824, 3, 0, 589825, 2, 0, 589826, 2, 0, 589827, 2, 0, 589828, 2, 0, 589829, 2, 0, 589830, 2, 0, 589831, 2, 0, 589832, 2, 0, 589833, 2, 0, 589834, 2, 0, 589835, 2, 0, 589836, 2, 0, 589837, 2, 0, 589838, 2, 0, 589839, 2, 0, 589840, 2, 0, 589841, 2, 0, 589842, 2, 0, 589843, 2, 0, 589844, 2, 0, 589845, 2, 0, 589846, 2, 0, 589847, 2, 0, 589848, 2, 0, 589849, 2, 0, 589850, 2, 0, 589851, 2, 0, 589857, 2, 0, 589858, 2, 0, 589859, 2, 0, 589860, 2, 0, 589861, 2, 0, 589862, 2, 0 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 109.489, 517.243 )
@@ -34,23 +71,55 @@ position = Vector2( 109.489, 517.243 )
 [node name="CoinSpawns" type="Path2D" parent="."]
 curve = SubResource( 1 )
 
-[node name="Bat" type="Path2D" parent="."]
-curve = SubResource( 2 )
-
-[node name="Position2D" type="Position2D" parent="Bat"]
-position = Vector2( 328.41, 424.334 )
-rotation = 7.45058e-09
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Bat"]
-position = Vector2( 406.193, 467.987 )
-rotation = -0.118524
-
 [node name="Lock" parent="." instance=ExtResource( 5 )]
 position = Vector2( 691.701, 511.676 )
 
-[node name="Key" parent="." instance=ExtResource( 4 )]
-position = Vector2( 912.28, 517.243 )
-
 [node name="Slime" parent="." instance=ExtResource( 6 )]
-position = Vector2( 297.844, 517.314 )
+position = Vector2( 993.799, 523.605 )
+
+[node name="Key" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1236.46, 330.626 )
+
+[node name="Spider" type="Path2D" parent="."]
+curve = SubResource( 2 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Spider"]
+position = Vector2( 216.137, 522.955 )
+rotation = -0.00383374
+
+[node name="Spider2" type="Path2D" parent="."]
+curve = SubResource( 3 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Spider2"]
+position = Vector2( 502.856, 521.396 )
+rotation = 3.13807
+
+[node name="Bee" type="Path2D" parent="."]
+curve = SubResource( 4 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Bee"]
+position = Vector2( 657.713, 363.769 )
+rotation = -7.77194e-06
+
+[node name="Bee2" type="Path2D" parent="."]
+curve = SubResource( 5 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Bee2"]
+position = Vector2( 1715.99, 175.5 )
+rotation = -0.00322391
+
+[node name="Spring" parent="." instance=ExtResource( 8 )]
+position = Vector2( 1360.27, 518.523 )
+
+[node name="Lava" parent="." instance=ExtResource( 10 )]
+position = Vector2( 1723.98, 550.756 )
+
+[node name="Bridge" parent="." instance=ExtResource( 11 )]
+position = Vector2( 1380.88, 377.375 )
+
+[node name="Slime2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 2226.11, 525.109 )
+
+[node name="EndLadder" parent="." instance=ExtResource( 12 )]
+position = Vector2( 225.929, 672.733 )
 [connection signal="got_key" from="Key" to="Lock" method="_on_got_key"]

@@ -8,10 +8,16 @@ onready var sprite = $AnimatedSprite
 onready var camera = $Camera2D
 var collision
 var has_key = false
+var on_ladder = false
+var end_ladder = false
 onready var screen_size = get_viewport_rect()
+onready var tiles = $"../TileMap"
+onready var set = tiles.tile_set
 
 func input():
 	velocity.x = 0
+	if on_ladder:
+		velocity.y = 0
 	if Input.is_action_pressed("a"):
 		sprite.flip_h = true
 		velocity.x -= 1
@@ -21,6 +27,12 @@ func input():
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
 			velocity.y = jump_speed
+	if Input.is_action_pressed("s"):
+		if on_ladder:
+			velocity.y += 200
+	if Input.is_action_pressed("w"):
+		if on_ladder:
+			velocity.y -= 200
 	velocity.x += velocity.x * speed
 
 # Called when the node enters the scene tree for the first time.
@@ -32,6 +44,7 @@ func _ready():
 
 
 func _physics_process(delta):
+	check_ladder()
 	if globals.spring:
 		jump_speed = -1300
 	else:
@@ -42,7 +55,11 @@ func _physics_process(delta):
 	else:
 		sprite.animation = "idle"
 		#.frame = 0
-	velocity.y += gravity * delta
+	if !on_ladder:
+		velocity.y += gravity * delta
+	if end_ladder:
+		velocity.y = 0
+		velocity.y += 1 * 100
 	velocity = move_and_slide(velocity, Vector2(0, -1))
 	check_collision()
 	#camera.position.x = clamp(camera.position.x, 0, screen_size.x)
@@ -52,12 +69,27 @@ func check_collision():
 		collision = get_slide_collision(i)
 		if collision.collider.name == "Slime":
 			get_tree().reload_current_scene()
+#		elif collision.collider is TileMap:
+#			var tile = collision.collider.world_to_map(collision.collider.to_local(position))
+#			#tile -= collision.normal
+#			tile = collision.collider.get_cellv(tile)
+#			if "Ladder" in collision.collider.tile_set.tile_get_name(tile):
+#				on_ladder = true
+#			else:
+#				on_ladder = false
+#		else:
+#			on_ladder = false
+			
+func check_ladder():
+	var tile = tiles.world_to_map(tiles.to_local(position))
+	tile = tiles.get_cellv(tile)
+	if tile != -1 and "Ladder" in set.tile_get_name(tile):
+		on_ladder = true
+	else:
+		on_ladder = false
 	
 
 
 func _on_VisibilityNotifier2D_viewport_exited(viewport):
-	camera.current = true
-
-
-func _on_VisibilityNotifier2D_viewport_entered(viewport):
-	camera.current = false
+	if end_ladder:
+		globals.load_next_level()

@@ -16,7 +16,7 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 350.85, 212.715 )
 
-[node name="Node2D" type="Node2D"]
+[node name="Slime" type="Node2D"]
 
 [node name="Slime" type="KinematicBody2D" parent="."]
 script = ExtResource( 4 )

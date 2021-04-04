@@ -26,7 +26,7 @@ playing = true
 polygon = PoolVector2Array( -16.7335, -23.874, -28.4405, -17.1276, -21.6941, -8.59528, -24.8689, -0.658272, -24.0167, 13.8035, -19.5268, 16.2589, -8.00274, 13.8268, -3.83582, 11.8425, -0.462585, 19.7795, 7.07757, 23.9464, 14.4193, 22.7559, 18.7847, 16.0094, 18.3878, 7.67559, 13.0303, -2.24567, 27.3169, -6.80945, 26.1264, -15.1433, 16.8004, -24.8661, 0.926392, -8.59528, -7.60589, -11.5717, -14.7492, -23.0803 )
 
 [node name="StingTimer" type="Timer" parent="."]
-wait_time = 2.5
+wait_time = 1.5
 
 [node name="StingerSpawn" type="Position2D" parent="."]
 position = Vector2( 8.76275, 24 )
@@ -38,3 +38,4 @@ shape = SubResource( 2 )
 [connection signal="body_entered" from="." to="." method="_on_Mob_body_entered"]
 [connection signal="timeout" from="StingTimer" to="." method="_on_StingTimer_timeout"]
 [connection signal="body_entered" from="Detection" to="." method="_on_Detection_body_entered"]
+[connection signal="body_exited" from="Detection" to="." method="_on_Detection_body_exited"]

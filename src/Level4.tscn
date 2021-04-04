@@ -1,0 +1,92 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://src/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/bg_castle.png" type="Texture" id=2]
+[ext_resource path="res://assets/light.png" type="Texture" id=3]
+[ext_resource path="res://src/tileset.tres" type="TileSet" id=4]
+[ext_resource path="res://src/HUD.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/LevelHandler.gd" type="Script" id=6]
+[ext_resource path="res://src/Spike.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Snake.tscn" type="PackedScene" id=8]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 321.475, 275.587, 0, 0, 0, 0, 828.367, 499.408 )
+}
+
+[sub_resource type="Curve2D" id=2]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 756.201, 500.628 )
+}
+
+[sub_resource type="Curve2D" id=3]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 327.983, 393.265, 5.05108, 94.848, -5.05108, -94.848, 479.183, 329.372, 0, 0, 0, 0, 327.242, 251.32, 2.80616, -109.44, -2.80616, 109.44, 164.675, 335.225, 0, 0, 0, 0, 327.242, 393.659 )
+}
+
+[node name="Node" type="Node"]
+script = ExtResource( 6 )
+use_cam = true
+
+[node name="HUD" parent="." instance=ExtResource( 5 )]
+
+[node name="BG" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 0.00012207
+texture = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Snake" parent="." instance=ExtResource( 8 )]
+position = Vector2( 599.345, 565.476 )
+
+[node name="TileMap" type="TileMap" parent="."]
+scale = Vector2( 0.86, 0.86 )
+tile_set = ExtResource( 4 )
+cell_size = Vector2( 70, 70 )
+format = 1
+tile_data = PoolIntArray( 262148, 14, 0, 327684, 13, 0, 327685, 15, 0, 327686, 15, 0, 393220, 13, 0, 458756, 13, 0, 524292, 13, 0, 589824, 15, 0, 589825, 15, 0, 589826, 15, 0, 589827, 15, 0, 589828, 15, 0, 589829, 15, 0, 589830, 15, 0, 589831, 15, 0, 589832, 15, 0, 589833, 15, 0, 589834, 15, 0, 589835, 15, 0, 589836, 15, 0, 589837, 15, 0, 589838, 15, 0, 589839, 15, 0, 589840, 15, 0 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+scale = Vector2( 0.86, 0.86 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 123.028, 50.6232 )
+
+[node name="Light2D" type="Light2D" parent="Player"]
+position = Vector2( 5.4339, -16.8258 )
+scale = Vector2( 1.72736, 1.78468 )
+texture = ExtResource( 3 )
+
+[node name="Tween" type="Tween" parent="Player"]
+
+[node name="CoinSpawns" type="Path2D" parent="."]
+curve = SubResource( 1 )
+
+[node name="BatterySpawns" type="Path2D" parent="."]
+curve = SubResource( 2 )
+
+[node name="BatteryTimer" type="Timer" parent="BatterySpawns"]
+autostart = true
+
+[node name="Spike" parent="." instance=ExtResource( 7 )]
+position = Vector2( 401, 508.41 )
+
+[node name="Spike2" parent="." instance=ExtResource( 7 )]
+position = Vector2( 333.729, 508.41 )
+
+[node name="Bat" type="Path2D" parent="."]
+curve = SubResource( 3 )
+
+[node name="Position2D" type="Position2D" parent="Bat"]
+position = Vector2( 325.162, 360.305 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Bat"]
+position = Vector2( 327.983, 393.265 )
+rotation = 0.17519
+[connection signal="tween_completed" from="Player/Tween" to="." method="_on_Battery_tween_completed"]
+[connection signal="timeout" from="BatterySpawns/BatteryTimer" to="." method="_on_BatteryTimer_timeout"]

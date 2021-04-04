@@ -3,7 +3,6 @@
 [ext_resource path="res://assets/Items/keyYellow.png" type="Texture" id=1]
 [ext_resource path="res://src/Key.gd" type="Script" id=2]
 
-
 [node name="Key" type="Area2D"]
 scale = Vector2( 0.8, 0.8 )
 script = ExtResource( 2 )

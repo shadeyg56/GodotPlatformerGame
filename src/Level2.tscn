@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Spring.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/LevelHandler.gd" type="Script" id=4]
 [ext_resource path="res://src/Spike.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/HUD.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/bg.png" type="Texture" id=7]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -29,6 +31,17 @@ _data = {
 [node name="Node2D" type="Node"]
 script = ExtResource( 4 )
 current_level = 2
+
+[node name="BG" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 7 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HUD" parent="." instance=ExtResource( 6 )]
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2( 0.86, 0.86 )
