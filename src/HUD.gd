@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-onready var CoinCount = $MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/CoinCount
+onready var CoinCount = $MarginContainer/VBoxContainer/HBoxContainer/Coins/CoinCount
 var coins = 0
 var coin_image
 
