@@ -1,16 +1,19 @@
 extends Node
 
-onready var Coin = preload("res://src/coin.tscn")
+onready var Coin = preload("res://src/Coin.tscn")
 onready var Spider = preload("res://src/Spider.tscn")
 onready var Bat = preload("res://src/Bat.tscn")
 onready var Bee = preload("res://src/Bee.tscn")
 var Battery
-var total_coins = {1: 3, 2: 6, 3: 5}
-var coins_grabbed = 0
+var total_coins
+var coins_grabbed = 3
 var battery_level = 100
 export var current_level = globals.current_level
 var mob
 export var use_cam = false
+var end_ladder = false
+
+signal ladder_unlocked
 
 func _process(delta):
 	if Input.is_action_just_pressed("pause"):
@@ -27,13 +30,17 @@ func _ready():
 		$Player/Camera2D.current = true
 	else:
 		$Player/Camera2D.current = false
-	if not get_node("Key"):
-		$HUD/MarginContainer/VBoxContainer/HBoxContainer/Key.visible = false
+	for node in get_children():
+		if "Key" in node.name:
+			$HUD.get_node("MarginContainer/VBoxContainer/HBoxContainer/Keys/%s" % node.name).visible = true
+		elif "EndLadder" in node.name:
+			end_ladder = true
 
 func spawn_coins():
-	var points = $CoinSpawns.curve.get_point_count()
+	total_coins = $CoinSpawns.curve.get_point_count()
+	print(total_coins)
 	var point = 0
-	while point <= points - 1:
+	while point <= total_coins - 1:
 		var pos = $CoinSpawns.curve.get_point_position(point)
 		var coin = Coin.instance()
 		add_child(coin)
@@ -73,8 +80,11 @@ func spawn_enemies():
 
 func on_coin_grabbed():
 	coins_grabbed += 1
-	if coins_grabbed == total_coins[current_level]:
-		globals.load_next_level()
+	if coins_grabbed == total_coins:
+		if !end_ladder:
+			globals.load_next_level()
+		else:
+			emit_signal("ladder_unlocked")
 		
 func on_battery_grabbed():
 	battery_level = 100
