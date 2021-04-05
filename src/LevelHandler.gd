@@ -6,7 +6,7 @@ onready var Bat = preload("res://src/Bat.tscn")
 onready var Bee = preload("res://src/Bee.tscn")
 var Battery
 var total_coins
-var coins_grabbed = 3
+var coins_grabbed = 0
 var battery_level = 100
 export var current_level = globals.current_level
 var mob
@@ -38,7 +38,6 @@ func _ready():
 
 func spawn_coins():
 	total_coins = $CoinSpawns.curve.get_point_count()
-	print(total_coins)
 	var point = 0
 	while point <= total_coins - 1:
 		var pos = $CoinSpawns.curve.get_point_position(point)
@@ -88,6 +87,7 @@ func on_coin_grabbed():
 		
 func on_battery_grabbed():
 	battery_level = 100
+	$Player/Thoughts.text = ""
 
 func _on_BatteryTimer_timeout():
 	battery_level -= 10
@@ -95,7 +95,25 @@ func _on_BatteryTimer_timeout():
 		var tween = $Player/Tween
 		tween.interpolate_property($Player/Light2D, "energy", null, 0, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
 		tween.start()
-
+	elif battery_level == 30:
+		$Player/Thoughts.text = "Low Battery!"
+		$Player/Thoughts/Tween.interpolate_property($Player/Thoughts, "percent_visible", 0, 1, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
+		$Player/Thoughts/Tween.start()
 
 func _on_Battery_tween_completed(object, key):
 	get_tree().reload_current_scene()
+
+
+func _on_Landed_body_entered(body):
+	if body.name == "Player":
+		if !globals.seen_flashlight:
+			get_tree().paused = true
+			$StartBox.visible = true
+			$StartBox/ColorRect/CenterContainer/RichTextLabel/Tween.interpolate_property($StartBox/ColorRect/CenterContainer/RichTextLabel/, "percent_visible", null, 1, 10, Tween.TRANS_LINEAR, Tween.EASE_IN)
+			$StartBox/ColorRect/CenterContainer/RichTextLabel/Tween.start()
+			globals.seen_flashlight = true
+
+
+func _on_OkButton_pressed():
+	$StartBox.visible = false
+	get_tree().paused = false
