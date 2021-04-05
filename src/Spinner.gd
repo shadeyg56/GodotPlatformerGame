@@ -17,7 +17,7 @@ func _physics_process(delta):
 	move_and_slide(velocity)
 	
 func check_collision():
-	if $RayCast2D.is_colliding():
+	if $RayCast2D.is_colliding() and $RayCast2D.get_collider().name != "Player":
 		colliding = true
 	else:
 		colliding = false
