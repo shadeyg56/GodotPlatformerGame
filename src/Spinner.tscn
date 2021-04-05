@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/Enemies/spinnerHalf.png" type="Texture" id=1]
+[ext_resource path="res://assets/Enemies/spinnerHalf_spin.png" type="Texture" id=2]
+[ext_resource path="res://src/Spinner.gd" type="Script" id=3]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="Spinner" type="KinematicBody2D"]
+script = ExtResource( 3 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -32, -32 )
+frames = SubResource( 1 )
+frame = 1
+playing = true
+centered = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( -0.222733, -15.8134 )
+polygon = PoolVector2Array( -3.93114, -14.8878, -9.22845, -15.1526, -11.3474, -10.7824, -15.9825, -7.86884, -19.6906, -8.26614, -23.2663, -4.69044, -24.0609, -2.43909, -22.7366, -1.64449, -24.8555, 3.12309, -28.6961, 3.78526, -30.4177, 10.2745, -28.4312, 11.5988, -28.6961, 13.8502, -28.4312, 14.6448, 28.7798, 14.7772, 28.5149, 12.1285, 30.6339, 10.8042, 29.9717, 5.63931, 25.8663, 2.72579, 24.2771, -0.58503, 24.1446, -5.08775, 20.9662, -7.86884, 18.3176, -8.531, 15.6689, -8.26614, 11.6959, -13.2986, 9.04729, -15.0202, 4.41214, -14.8878, 2.55807, -13.1662, -1.67977, -13.0337 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+enabled = true
