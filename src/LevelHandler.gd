@@ -88,6 +88,7 @@ func on_coin_grabbed():
 func on_battery_grabbed():
 	battery_level = 100
 	$Player/Thoughts.text = ""
+	$HUD/MarginContainer/VBoxContainer/HBoxContainer2/BatteryProgressBar.texture_progress = load("res://assets/HUD/battery_green.png")
 
 func _on_BatteryTimer_timeout():
 	battery_level -= 10
@@ -96,9 +97,12 @@ func _on_BatteryTimer_timeout():
 		tween.interpolate_property($Player/Light2D, "energy", null, 0, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
 		tween.start()
 	elif battery_level == 30:
+		$HUD/MarginContainer/VBoxContainer/HBoxContainer2/BatteryProgressBar.texture_progress = load("res://assets/HUD/battery_red.png")
 		$Player/Thoughts.text = "Low Battery!"
 		$Player/Thoughts/Tween.interpolate_property($Player/Thoughts, "percent_visible", 0, 1, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
 		$Player/Thoughts/Tween.start()
+	elif battery_level == 50:
+		$HUD/MarginContainer/VBoxContainer/HBoxContainer2/BatteryProgressBar.texture_progress = load("res://assets/HUD/battery_yellow.png")
 
 func _on_Battery_tween_completed(object, key):
 	get_tree().reload_current_scene()

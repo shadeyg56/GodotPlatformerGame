@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/HUD/hud_keyYellow_disabled.png" type="Texture" id=1]
 [ext_resource path="res://assets/HUD/hud_0.png" type="Texture" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://assets/HUD/hud_keyGreem_disabled.png" type="Texture" id=7]
 [ext_resource path="res://assets/HUD/hud_keyBlue_disabled.png" type="Texture" id=8]
 [ext_resource path="res://assets/HUD/hud_keyRed_disabled.png" type="Texture" id=9]
+[ext_resource path="res://assets/HUD/battery_green.png" type="Texture" id=10]
+[ext_resource path="res://assets/HUD/battery_bar_over.png" type="Texture" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 size = 70
@@ -126,7 +128,7 @@ __meta__ = {
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 67.0
 margin_right = 1004.0
-margin_bottom = 95.0
+margin_bottom = 101.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -135,14 +137,24 @@ __meta__ = {
 margin_right = 53.4
 margin_bottom = 28.8
 rect_min_size = Vector2( 53.4, 28.8 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
 texture = ExtResource( 6 )
 expand = true
+stretch_mode = 6
 
-[node name="BatteryProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="BatteryProgressBar" type="TextureProgress" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 margin_left = 57.0
-margin_right = 110.8
-margin_bottom = 28.8
-rect_min_size = Vector2( 53.8, 28.8 )
+margin_right = 337.0
+margin_bottom = 34.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+value = 100.0
+texture_over = ExtResource( 11 )
+texture_progress = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="PauseMenu" type="CenterContainer" parent="."]
 pause_mode = 2
