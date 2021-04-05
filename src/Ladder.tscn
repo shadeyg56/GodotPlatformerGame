@@ -7,6 +7,7 @@
 extents = Vector2( 35.3087, 35.031 )
 
 [node name="Ladder" type="StaticBody2D"]
+scale = Vector2( 0.86, 0.86 )
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
