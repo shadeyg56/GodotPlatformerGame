@@ -37,16 +37,17 @@ func _ready():
 			end_ladder = true
 
 func spawn_coins():
-	total_coins = $CoinSpawns.curve.get_point_count()
-	var point = 0
-	while point <= total_coins - 1:
-		var pos = $CoinSpawns.curve.get_point_position(point)
-		var coin = Coin.instance()
-		add_child(coin)
-		coin.position = pos 
-		coin.connect("coin_grabbed", self, "on_coin_grabbed")
-		coin.connect("coin_grabbed", $HUD, "on_coin_grabbed")
-		point += 1
+	if $CoinSpawns:
+		total_coins = $CoinSpawns.curve.get_point_count()
+		var point = 0
+		while point <= total_coins - 1:
+			var pos = $CoinSpawns.curve.get_point_position(point)
+			var coin = Coin.instance()
+			add_child(coin)
+			coin.position = pos 
+			coin.connect("coin_grabbed", self, "on_coin_grabbed")
+			coin.connect("coin_grabbed", $HUD, "on_coin_grabbed")
+			point += 1
 		
 func spawn_batteries():
 	var points = $BatterySpawns.curve.get_point_count()

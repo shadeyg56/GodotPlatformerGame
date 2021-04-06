@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/KingSlime.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/tileset.tres" type="TileSet" id=3]
+[ext_resource path="res://src/HUD.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/LevelHandler.gd" type="Script" id=5]
+
+[node name="Node" type="Node"]
+script = ExtResource( 5 )
+
+[node name="HUD" parent="." instance=ExtResource( 4 )]
+
+[node name="TileMap" type="TileMap" parent="."]
+scale = Vector2( 0.86, 0.86 )
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 70, 70 )
+format = 1
+tile_data = PoolIntArray( 589824, 6, 0, 589825, 6, 0, 589826, 6, 0, 589827, 6, 0, 589828, 6, 0, 589829, 6, 0, 589830, 6, 0, 589831, 6, 0, 589832, 6, 0, 589833, 6, 0, 589834, 6, 0, 589835, 6, 0, 589836, 6, 0, 589837, 6, 0, 589838, 6, 0, 589839, 6, 0, 589840, 6, 0 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 226.53, 513.468 )
+
+[node name="KingSlime" parent="." instance=ExtResource( 2 )]
+position = Vector2( 692.718, 456.622 )
