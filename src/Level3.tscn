@@ -15,7 +15,7 @@
 
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 353.456, 523.099, 0, 0, 0, 0, 749.815, 511.262, 0, 0, 0, 0, 1996.98, 415.408 )
+"points": PoolVector2Array( 0, 0, 0, 0, 353.456, 523.099, 0, 0, 0, 0, 749.815, 511.262, 0, 0, 0, 0, 1996.98, 415.408, 0, 0, 0, 0, 2222.24, 513.378 )
 }
 
 [sub_resource type="Curve2D" id=2]
@@ -30,7 +30,7 @@ _data = {
 
 [sub_resource type="Curve2D" id=4]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 657.713, 363.769, 0, 0, 0, 0, 844.591, 363.769, 0, 0, 0, 0, 657.713, 364.436 )
+"points": PoolVector2Array( 0, 0, 0, 0, 660.633, 236.784, 0, 0, 0, 0, 847.523, 235.661, 0, 0, 0, 0, 660.633, 237.345 )
 }
 
 [sub_resource type="Curve2D" id=5]
@@ -63,22 +63,24 @@ scale = Vector2( 0.86, 0.86 )
 tile_set = ExtResource( 3 )
 cell_size = Vector2( 70, 70 )
 format = 1
-tile_data = PoolIntArray( 327679, 0, 0, 393215, 0, 0, 458751, 0, 0, 393235, 7, 0, 393236, 7, 0, 524287, 0, 0, 458763, 6, 0, 458764, 6, 0, 458765, 6, 0, 458779, 9, 0, 458785, 12, 0, 589823, 0, 0, 524301, 6, 0, 524314, 9, 0, 524315, 10, 0, 524321, 11, 0, 524322, 12, 0, 655359, 0, 0, 589824, 3, 0, 589825, 2, 0, 589826, 2, 0, 589827, 2, 0, 589828, 2, 0, 589829, 2, 0, 589830, 2, 0, 589831, 2, 0, 589832, 2, 0, 589833, 2, 0, 589834, 2, 0, 589835, 2, 0, 589836, 2, 0, 589837, 2, 0, 589838, 2, 0, 589839, 2, 0, 589840, 2, 0, 589841, 2, 0, 589842, 2, 0, 589843, 2, 0, 589844, 2, 0, 589845, 2, 0, 589846, 2, 0, 589847, 2, 0, 589848, 2, 0, 589849, 2, 0, 589850, 2, 0, 589851, 2, 0, 589857, 2, 0, 589858, 2, 0, 589859, 2, 0, 589860, 2, 0, 589861, 2, 0, 589862, 2, 0 )
+tile_data = PoolIntArray( 39, 16, 0, 65575, 16, 0, 131111, 16, 0, 196647, 16, 0, 327679, 0, 0, 262183, 16, 0, 393215, 0, 0, 327719, 16, 0, 458751, 0, 0, 393235, 7, 0, 393236, 7, 0, 393255, 16, 0, 524287, 0, 0, 458763, 6, 0, 458764, 6, 0, 458765, 6, 0, 458779, 9, 0, 458785, 12, 0, 458791, 16, 0, 589823, 0, 0, 524301, 6, 0, 524314, 9, 0, 524315, 10, 0, 524321, 11, 0, 524322, 12, 0, 524327, 16, 0, 655359, 0, 0, 589824, 3, 0, 589825, 2, 0, 589826, 2, 0, 589827, 2, 0, 589828, 2, 0, 589829, 2, 0, 589830, 2, 0, 589831, 2, 0, 589832, 2, 0, 589833, 2, 0, 589834, 2, 0, 589835, 2, 0, 589836, 2, 0, 589837, 2, 0, 589838, 2, 0, 589839, 2, 0, 589840, 2, 0, 589841, 2, 0, 589842, 2, 0, 589843, 2, 0, 589844, 2, 0, 589845, 2, 0, 589846, 2, 0, 589847, 2, 0, 589848, 2, 0, 589849, 2, 0, 589850, 2, 0, 589851, 2, 0, 589857, 2, 0, 589858, 2, 0, 589859, 2, 0, 589860, 2, 0, 589861, 2, 0, 589863, 0, 0 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 109.489, 517.243 )
+position = Vector2( 92.0729, 514.641 )
 
 [node name="CoinSpawns" type="Path2D" parent="."]
 curve = SubResource( 1 )
 
-[node name="Lock" parent="." instance=ExtResource( 5 )]
+[node name="BlueLock" parent="." instance=ExtResource( 5 )]
 position = Vector2( 691.701, 511.676 )
+color = "blue"
 
 [node name="Slime" parent="." instance=ExtResource( 6 )]
-position = Vector2( 993.799, 523.605 )
+position = Vector2( 1073.17, 525.192 )
 
-[node name="Key" parent="." instance=ExtResource( 4 )]
+[node name="BlueKey" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1236.46, 330.626 )
+color = "blue"
 
 [node name="Spider" type="Path2D" parent="."]
 curve = SubResource( 2 )
@@ -98,8 +100,8 @@ rotation = 3.13807
 curve = SubResource( 4 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Bee"]
-position = Vector2( 657.713, 363.769 )
-rotation = -7.77194e-06
+position = Vector2( 660.633, 236.784 )
+rotation = -0.00600347
 
 [node name="Bee2" type="Path2D" parent="."]
 curve = SubResource( 5 )
@@ -121,5 +123,9 @@ position = Vector2( 1380.88, 377.375 )
 position = Vector2( 2226.11, 525.109 )
 
 [node name="EndLadder" parent="." instance=ExtResource( 12 )]
-position = Vector2( 225.929, 672.733 )
-[connection signal="got_key" from="Key" to="Lock" method="_on_got_key"]
+position = Vector2( 2317.11, 573.061 )
+
+[node name="Lock" parent="." instance=ExtResource( 5 )]
+position = Vector2( 2317.55, 572.777 )
+[connection signal="ladder_unlocked" from="." to="Lock" method="_on_Node_ladder_unlocked"]
+[connection signal="got_key" from="BlueKey" to="BlueLock" method="_on_got_key"]
