@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://src/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/bg_castle.png" type="Texture" id=2]
@@ -8,24 +8,49 @@
 [ext_resource path="res://src/LevelHandler.gd" type="Script" id=6]
 [ext_resource path="res://src/Spike.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/Snake.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/Spring.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/Spinner.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/Lock.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/Key.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/Slime.tscn" type="PackedScene" id=13]
+[ext_resource path="res://assets/square_light.png" type="Texture" id=14]
+[ext_resource path="res://assets/arcadeclassic.regular.ttf" type="DynamicFontData" id=15]
 
-[sub_resource type="Curve2D" id=1]
-_data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 321.475, 275.587, 0, 0, 0, 0, 828.367, 499.408 )
-}
+[sub_resource type="DynamicFont" id=1]
+size = 30
+extra_spacing_space = 5
+font_data = ExtResource( 15 )
 
-[sub_resource type="Curve2D" id=2]
-_data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 756.201, 500.628 )
-}
+[sub_resource type="DynamicFont" id=2]
+size = 30
+font_data = ExtResource( 15 )
 
 [sub_resource type="Curve2D" id=3]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 321.475, 275.587, 0, 0, 0, 0, 942.581, 506.581, 0, 0, 0, 0, 1116.24, 276.864, 0, 0, 0, 0, 1295.19, 514.322 )
+}
+
+[sub_resource type="Curve2D" id=4]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 827.428, 506.581, 0, 0, 0, 0, 1354.52, 513.262 )
+}
+
+[sub_resource type="Curve2D" id=5]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 327.983, 393.265, 5.05108, 94.848, -5.05108, -94.848, 479.183, 329.372, 0, 0, 0, 0, 327.242, 251.32, 2.80616, -109.44, -2.80616, 109.44, 164.675, 335.225, 0, 0, 0, 0, 327.242, 393.659 )
 }
 
+[sub_resource type="Curve2D" id=6]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 1113.48, 395.576, -2.37841, 63.6226, 2.37841, -63.6226, 1217.77, 334.696, 0, 0, 0, 0, 1109.23, 245.028, -1.78381, -92.1635, 1.78381, 92.1635, 956.794, 337.056, 0, 0, 0, 0, 1113, 395.576 )
+}
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 155.243, 26.42 )
+
 [node name="Node" type="Node"]
 script = ExtResource( 6 )
+current_level = 4
 use_cam = true
 
 [node name="HUD" parent="." instance=ExtResource( 5 )]
@@ -33,7 +58,7 @@ use_cam = true
 [node name="BG" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 0.00012207
+margin_right = 1195.0
 texture = ExtResource( 2 )
 expand = true
 __meta__ = {
@@ -41,34 +66,102 @@ __meta__ = {
 }
 
 [node name="Snake" parent="." instance=ExtResource( 8 )]
-position = Vector2( 599.345, 565.476 )
+position = Vector2( 675.799, 561.7 )
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2( 0.86, 0.86 )
 tile_set = ExtResource( 4 )
 cell_size = Vector2( 70, 70 )
 format = 1
-tile_data = PoolIntArray( 262148, 14, 0, 327684, 13, 0, 327685, 15, 0, 327686, 15, 0, 393220, 13, 0, 458756, 13, 0, 524292, 13, 0, 589824, 15, 0, 589825, 15, 0, 589826, 15, 0, 589827, 15, 0, 589828, 15, 0, 589829, 15, 0, 589830, 15, 0, 589831, 15, 0, 589832, 15, 0, 589833, 15, 0, 589834, 15, 0, 589835, 15, 0, 589836, 15, 0, 589837, 15, 0, 589838, 15, 0, 589839, 15, 0, 589840, 15, 0 )
+tile_data = PoolIntArray( 131091, 14, 0, 196627, 13, 0, 196628, 15, 0, 196629, 15, 0, 196630, 15, 0, 196631, 15, 0, 262148, 14, 0, 262163, 13, 0, 327684, 13, 0, 327685, 15, 0, 327686, 15, 0, 327697, 15, 0, 327698, 15, 0, 327699, 13, 0, 393220, 13, 0, 458756, 13, 0, 458769, 16, 0, 458770, 16, 0, 458771, 16, 0, 458772, 16, 0, 458773, 16, 0, 458774, 16, 0, 458775, 16, 0, 524292, 13, 0, 524305, 16, 0, 524308, 16, 0, 589824, 15, 0, 589825, 15, 0, 589826, 15, 0, 589827, 15, 0, 589828, 15, 0, 589829, 15, 0, 589830, 15, 0, 589831, 15, 0, 589832, 15, 0, 589833, 15, 0, 589834, 15, 0, 589835, 15, 0, 589836, 15, 0, 589837, 15, 0, 589838, 15, 0, 589839, 15, 0, 589840, 15, 0, 589841, 15, 0, 589842, 15, 0, 589843, 15, 0, 589844, 15, 0, 589845, 15, 0, 589846, 15, 0, 589847, 15, 0, 589848, 15, 0, 589849, 15, 0, 589850, 15, 0, 589851, 15, 0, 589852, 15, 0 )
+
+[node name="StartBox" type="CenterContainer" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 480.0
+margin_bottom = 20.0
+use_top_left = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="StartBox"]
+margin_left = -150.0
+margin_top = -200.0
+margin_right = 150.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 300, 400 )
+color = Color( 0.360784, 0.333333, 0.333333, 1 )
+
+[node name="CenterContainer" type="CenterContainer" parent="StartBox/ColorRect"]
+anchor_right = 1.0
+margin_bottom = 200.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="StartBox/ColorRect/CenterContainer"]
+pause_mode = 2
+margin_right = 300.0
+margin_bottom = 400.0
+rect_min_size = Vector2( 300, 400 )
+custom_fonts/normal_font = SubResource( 1 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+visible_characters = 0
+percent_visible = 0.0
+text = "Wow it sure is dark in here
+good thing you have your trusty flashlight to light the way. 
+Make sure to pick up batteries though or you may end up stranded in the dark"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="StartBox/ColorRect/CenterContainer/RichTextLabel"]
+
+[node name="OkButton" type="Button" parent="StartBox/ColorRect"]
+pause_mode = 2
+margin_left = 127.0
+margin_top = 350.0
+margin_right = 173.0
+margin_bottom = 387.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Ok"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Light2D" type="Light2D" parent="StartBox"]
+position = Vector2( -0.594608, 0.594572 )
+scale = Vector2( 0.669665, 0.896935 )
+texture = ExtResource( 14 )
+texture_scale = 2.0
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 scale = Vector2( 0.86, 0.86 )
 color = Color( 0, 0, 0, 1 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 123.028, 50.6232 )
+position = Vector2( 85.9763, 42.8696 )
 
 [node name="Light2D" type="Light2D" parent="Player"]
-position = Vector2( 5.4339, -16.8258 )
+position = Vector2( 3.93561, -16.8258 )
 scale = Vector2( 1.72736, 1.78468 )
 texture = ExtResource( 3 )
 
 [node name="Tween" type="Tween" parent="Player"]
 
 [node name="CoinSpawns" type="Path2D" parent="."]
-curve = SubResource( 1 )
+curve = SubResource( 3 )
 
 [node name="BatterySpawns" type="Path2D" parent="."]
-curve = SubResource( 2 )
+curve = SubResource( 4 )
 
 [node name="BatteryTimer" type="Timer" parent="BatterySpawns"]
 autostart = true
@@ -80,7 +173,7 @@ position = Vector2( 401, 508.41 )
 position = Vector2( 333.729, 508.41 )
 
 [node name="Bat" type="Path2D" parent="."]
-curve = SubResource( 3 )
+curve = SubResource( 5 )
 
 [node name="Position2D" type="Position2D" parent="Bat"]
 position = Vector2( 325.162, 360.305 )
@@ -88,5 +181,41 @@ position = Vector2( 325.162, 360.305 )
 [node name="PathFollow2D" type="PathFollow2D" parent="Bat"]
 position = Vector2( 327.983, 393.265 )
 rotation = 0.17519
+
+[node name="Bat2" type="Path2D" parent="."]
+curve = SubResource( 6 )
+
+[node name="Position2D" type="Position2D" parent="Bat2"]
+position = Vector2( 1113.69, 360.868 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Bat2"]
+position = Vector2( 1113.48, 395.576 )
+rotation = -0.00110623
+
+[node name="Spring" parent="." instance=ExtResource( 9 )]
+position = Vector2( 993.918, 515.688 )
+
+[node name="Spinner" parent="." instance=ExtResource( 10 )]
+position = Vector2( 1416.14, 181.863 )
+
+[node name="BlueLock" parent="." instance=ExtResource( 11 )]
+position = Vector2( 1414.69, 511.528 )
+color = "blue"
+
+[node name="BlueKey" parent="." instance=ExtResource( 12 )]
+position = Vector2( 1333.76, 149.597 )
+color = "blue"
+
+[node name="Slime" parent="." instance=ExtResource( 13 )]
+position = Vector2( 1798.02, 527.927 )
+
+[node name="Landed" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Landed"]
+position = Vector2( 84.757, 528.672 )
+shape = SubResource( 7 )
+[connection signal="pressed" from="StartBox/ColorRect/OkButton" to="." method="_on_OkButton_pressed"]
 [connection signal="tween_completed" from="Player/Tween" to="." method="_on_Battery_tween_completed"]
 [connection signal="timeout" from="BatterySpawns/BatteryTimer" to="." method="_on_BatteryTimer_timeout"]
+[connection signal="got_key" from="BlueKey" to="BlueLock" method="_on_got_key"]
+[connection signal="body_entered" from="Landed" to="." method="_on_Landed_body_entered"]
