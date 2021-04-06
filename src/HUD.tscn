@@ -141,7 +141,6 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 texture = ExtResource( 6 )
 expand = true
-stretch_mode = 6
 
 [node name="BatteryProgressBar" type="TextureProgress" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 margin_left = 57.0

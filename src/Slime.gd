@@ -6,11 +6,13 @@ var collision
 var gravity = 500
 var jump_speed = -400
 var prevX = 0
+export var blue = false
 onready var Player = $"../../Player"
 onready var sprite = $AnimatedSprite
 
 func _ready():
-	pass
+	if blue:
+		sprite.animation = "blue"
 
 func _physics_process(delta):
 	if is_on_floor():
