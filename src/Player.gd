@@ -21,9 +21,18 @@ func input():
 	if Input.is_action_pressed("a"):
 		sprite.flip_h = true
 		velocity.x -= 1
+		if $Sword.visible:
+			$Sword.position.x = -11
+			#$Sword/Sprite.flip_h = true
 	if Input.is_action_pressed("d"):
 		sprite.flip_h = false
 		velocity.x += 1
+		if $Sword.visible:
+			if $Sword/Tween.is_active():
+				$Sword/Tween.stop_all()
+				$Sword.swing("right")
+			$Sword.position.x = 11
+			$Sword/Sprite.flip_h = false
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
 			velocity.y = jump_speed
@@ -33,6 +42,13 @@ func input():
 	if Input.is_action_pressed("w"):
 		if on_ladder:
 			velocity.y -= 200
+	if Input.is_action_just_pressed("left_click"):
+		$Sword.visible = true
+		$Sword/CollisionPolygon2D.set_deferred("disabled", false)
+		if !sprite.flip_h:
+			$Sword.swing("right")
+		else:
+			$Sword.swing("left")
 	velocity.x += velocity.x * speed
 
 # Called when the node enters the scene tree for the first time.

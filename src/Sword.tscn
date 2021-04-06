@@ -4,17 +4,19 @@
 [ext_resource path="res://src/Sword.gd" type="Script" id=2]
 
 [node name="Sword" type="Area2D"]
-rotation = 0.785398
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -57.4, -57.4 )
+position = Vector2( -41.6152, -80.4192 )
 scale = Vector2( 0.05, 0.05 )
 texture = ExtResource( 1 )
 centered = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2( -27.8191, -27.7132 )
+position = Vector2( 0, -38.8909 )
+rotation = 0.785398
 polygon = PoolVector2Array( -29.27, -29.561, -29.5017, -21.0237, -26.4693, -14.4488, -22.6001, -11.8693, -13.0756, -2.64252, 3.8792, 13.845, -1.91819, 19.0478, -1.47224, 21.7235, 2.98729, 21.7235, 8.375, 16.75, 15.75, 24.625, 16.6632, 26.7776, 18.5956, 29.3047, 27.2174, 29.1561, 29.4697, 27.4001, 29.2985, 19.1964, 17.125, 8.875, 22.1633, 3.2908, 22.1633, -1.61468, 18.7443, -1.76333, 14.1361, 4.03405, -1.96946, -12.655, -11.2902, -22.5657, -20.4995, -29.2637 )
+disabled = true
 
 [node name="Tween" type="Tween" parent="."]
+[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]
