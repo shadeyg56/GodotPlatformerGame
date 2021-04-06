@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/Enemies/slime_crown.png" type="Texture" id=1]
-[ext_resource path="res://KingSlime.gd" type="Script" id=2]
+[ext_resource path="res://src/KingSlime.gd" type="Script" id=2]
 [ext_resource path="res://assets/Enemies/slimeBlue.png" type="Texture" id=3]
 
 [node name="KingSlime" type="KinematicBody2D"]
