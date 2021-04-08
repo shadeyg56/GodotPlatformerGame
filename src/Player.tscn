@@ -98,13 +98,14 @@ extra_spacing_space = 5
 font_data = ExtResource( 3 )
 
 [node name="Player" type="KinematicBody2D"]
+collision_mask = 3
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 3, 3 )
 frames = SubResource( 15 )
 animation = "idle"
-frame = 1
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
@@ -134,5 +135,4 @@ __meta__ = {
 [node name="Sword" parent="." instance=ExtResource( 4 )]
 visible = false
 position = Vector2( 11, 10.114 )
-scale = Vector2( 1, 1 )
 [connection signal="viewport_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_viewport_exited"]
