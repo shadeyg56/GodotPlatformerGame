@@ -19,4 +19,5 @@ polygon = PoolVector2Array( -29.27, -29.561, -29.5017, -21.0237, -26.4693, -14.4
 disabled = true
 
 [node name="Tween" type="Tween" parent="."]
+[connection signal="body_entered" from="." to="." method="_on_Sword_body_entered"]
 [connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]

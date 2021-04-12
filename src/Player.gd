@@ -4,12 +4,14 @@ var velocity = Vector2()
 export var speed = 200
 export var gravity = 3000
 export var jump_speed = -1000
+var health = 100
 onready var sprite = $AnimatedSprite
 onready var camera = $Camera2D
 var collision
 var has_key = false
 var on_ladder = false
 var end_ladder = false
+var lock_input = false
 onready var screen_size = get_viewport_rect()
 onready var tiles = $"../TileMap"
 onready var set = tiles.tile_set
@@ -60,12 +62,14 @@ func _ready():
 
 
 func _physics_process(delta):
+	print(health)
 	check_ladder()
 	if globals.spring:
 		jump_speed = -1300
 	else:
 		jump_speed = -1000
-	input()
+	if !lock_input:
+		input()
 	if velocity.length() > 0:
 		sprite.animation = "walking"
 	else:
@@ -104,8 +108,19 @@ func check_ladder():
 	else:
 		on_ladder = false
 	
+func launch():
+	lock_input = true
+	velocity.x = -500
+	yield(get_tree().create_timer(0.5), "timeout")
+	lock_input = false
 
 
 func _on_VisibilityNotifier2D_viewport_exited(viewport):
 	if end_ladder:
 		globals.load_next_level()
+
+
+func _on_player_hit(damage):
+	health -= damage
+	if health == 0:
+		get_tree().reload_current_scene()

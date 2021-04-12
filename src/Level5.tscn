@@ -8,6 +8,7 @@
 
 [node name="Node" type="Node"]
 script = ExtResource( 5 )
+has_health = true
 
 [node name="HUD" parent="." instance=ExtResource( 4 )]
 
@@ -24,3 +25,5 @@ position = Vector2( 226.53, 513.468 )
 
 [node name="KingSlime" parent="." instance=ExtResource( 2 )]
 position = Vector2( 692.718, 456.622 )
+[connection signal="player_hit" from="KingSlime" to="HUD" method="_on_player_hit"]
+[connection signal="player_hit" from="KingSlime" to="Player" method="_on_player_hit"]

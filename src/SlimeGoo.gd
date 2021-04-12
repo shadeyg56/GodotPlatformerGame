@@ -1,10 +1,14 @@
 extends Area2D
 
 onready var Player = $"../../Player"
+var spawn
 
 func _ready():
 	get_parent().move = null
-	get_parent().ball_shot = false
+	#get_parent().ball_shot = false
+	
+func _process(delta):
+	global_position = spawn
 
 
 func _on_Goo_body_entered(body):

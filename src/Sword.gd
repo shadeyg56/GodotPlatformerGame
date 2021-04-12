@@ -20,3 +20,8 @@ func _on_Tween_tween_completed(object, key):
 	$CollisionPolygon2D.set_deferred("disabled", true)
 	visible = false
 	rotation_degrees = 0
+
+
+func _on_Sword_body_entered(body):
+	if "health" in body:
+		print(body.name)

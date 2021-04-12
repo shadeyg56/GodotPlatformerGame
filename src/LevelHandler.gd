@@ -11,6 +11,8 @@ var battery_level = 100
 export var current_level = globals.current_level
 var mob
 export var use_cam = false
+export var has_health = false
+export var has_battery = false
 var end_ladder = false
 
 signal ladder_unlocked
@@ -30,6 +32,10 @@ func _ready():
 		$Player/Camera2D.current = true
 	else:
 		$Player/Camera2D.current = false
+	if has_health:
+		$HUD/MarginContainer/VBoxContainer/Health.visible = true
+	if has_battery:
+		$HUD/MarginContainer/VBoxContainer/Battery.visible = true
 	for node in get_children():
 		if "Key" in node.name:
 			$HUD.get_node("MarginContainer/VBoxContainer/HBoxContainer/Keys/%s" % node.name).visible = true

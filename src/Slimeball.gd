@@ -20,6 +20,6 @@ func check_collision():
 		var collision = get_slide_collision(i)
 		if collision.collider is TileMap:
 			var new_goo = Goo.instance()
-			new_goo.position = position
+			new_goo.spawn = global_position
 			get_parent().add_child(new_goo)
 			queue_free()
