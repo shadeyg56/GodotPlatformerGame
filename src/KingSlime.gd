@@ -23,6 +23,7 @@ func _ready():
 	$"../HUD/BossHealth".visible = true
 
 func _physics_process(delta):
+	print(health)
 	if is_on_floor():
 		velocity.x = 0
 	else:

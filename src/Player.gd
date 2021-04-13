@@ -16,6 +16,8 @@ onready var screen_size = get_viewport_rect()
 onready var tiles = $"../TileMap"
 onready var set = tiles.tile_set
 
+signal boss_hit
+
 func input():
 	velocity.x = 0
 	if on_ladder:
@@ -62,7 +64,6 @@ func _ready():
 
 
 func _physics_process(delta):
-	print(health)
 	check_ladder()
 	if globals.spring:
 		jump_speed = -1300
@@ -124,3 +125,10 @@ func _on_player_hit(damage):
 	health -= damage
 	if health == 0:
 		get_tree().reload_current_scene()
+
+
+func _on_Sword_body_entered(body):
+	if body.name != "Player":
+		if "health" in body:
+			body.health -= 20
+			emit_signal("boss_hit")
